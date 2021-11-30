@@ -22,19 +22,25 @@ app.get("/api/compliment", (req, res) => {
 app.get("/api/fortune", (req, res) => {
   console.log(req.query)
   console.log(res)
-  // const fortunes = [
-  //   "A beautiful, smart, and loving person will be coming into your life.",
-  //   "A fresh start will put you on your way.",
-  //   "A good time to finish up old tasks.",
-  //   "A lifetime of happiness lies ahead of you.",
-  // ];
-  // //choose random fortune
-  // let randomIndex = Math.floor(Math.random() * fortunes.length);
-  // let randomFortune = fortunes[randomIndex];
+  const fortunes = [
+    "A beautiful, smart, and loving person will be coming into your life.",
+    "A fresh start will put you on your way.",
+    "A good time to finish up old tasks.",
+    "A lifetime of happiness lies ahead of you.",
+  ];
+  //choose random fortune
+  let randomIndex = Math.floor(Math.random() * fortunes.length);
+  let randomFortune = fortunes[randomIndex];
 
-  // res.status(200).send(randomFortune);
+  res.status(200).send(randomFortune);
 });
 
-app.put()
+app.get('/api/horoscope/:sign',(req,res) => {
+  
+  const signP = req.params.sign
+  const result = horoscope.find(({sign}) => sign === signP )
+  console.log(signP, result)
+  res.status(200).send(result)
+})
 
 app.listen(4000, () => console.log("Server running on 4000"));
